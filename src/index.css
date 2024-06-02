@@ -1,0 +1,38 @@
+/* Google fonts */
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Merriweather", serif;
+}
+
+li,
+a,
+p,
+span,
+input,
+select {
+  font-family: "Open Sans", sans-serif;
+}
+.project-btn {
+  background-color: #0d47a1;
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+}
+.project-btn:hover {
+  background-color: #7e8a10;
+}
+.bg-blue {
+  background-color: #00bcd4;
+}
+/* aqua blue: #00BCD4 */
