@@ -5,7 +5,7 @@ const Header = () => {
   const navLinks = (
     <>
       <li>
-        <NavLink to="/">Home</NavLink>{" "}
+        <NavLink to="/">Home</NavLink>
       </li>
       <li>
         {" "}
@@ -50,7 +50,7 @@ const Header = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 text-white"
+              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-blue rounded-box w-52 text-white"
             >
               {navLinks}
             </ul>
@@ -63,7 +63,9 @@ const Header = () => {
           <ul className="menu menu-horizontal px-1 text-white">{navLinks}</ul>
         </div>
         <div className="navbar-end">
-          <a className="project-btn">Button</a>
+          <Link to="/login" className="project-btn">
+            Login
+          </Link>
         </div>
       </div>
     </div>
