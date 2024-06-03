@@ -35,4 +35,8 @@ select {
 .bg-blue {
   background-color: #00bcd4;
 }
+.active {
+  color: #00bcd4;
+  font-weight: 700;
+}
 /* aqua blue: #00BCD4 */

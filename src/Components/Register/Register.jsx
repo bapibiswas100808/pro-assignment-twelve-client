@@ -1,13 +1,20 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
+import UseAxiosPublic from "../../Hooks/useAxiosPublic/useAxiosPublic";
+import Swal from "sweetalert2";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 const Register = () => {
+  const navigate = useNavigate();
+  const axiosPublic = UseAxiosPublic();
   const [districts, setDistricts] = useState([]);
   const [thanas, setThanas] = useState([]);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const { createUser, updateUserProfile } = useContext(AuthContext);
   useEffect(() => {
     axios.get("district.json").then((res) => {
       setDistricts(res.data);
@@ -20,6 +27,7 @@ const Register = () => {
   }, []);
   const handleRegister = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const form = e.target;
     const imageFile = form.image.files[0];
     const uploadImage = { image: imageFile };
@@ -37,21 +45,50 @@ const Register = () => {
     const upazilla = form.upazilla.value;
     const password = form.password.value;
     const cfPassword = form.cfPassword.value;
+    const status = "active";
     if (password !== cfPassword) {
-      setError("Passwords did not match! Please tey again.");
+      setError("Passwords did not match! Please try again.");
+      setLoading(false);
       return;
     }
     setError("");
-    console.log(
-      name,
-      email,
-      image,
-      blood,
-      district,
-      upazilla,
-      password,
-      cfPassword
-    );
+    createUser(email, password)
+      .then((res) => {
+        console.log(res.user);
+        updateUserProfile(name, image)
+          .then((res) => {
+            console.log(res);
+            const userInfo = {
+              name,
+              email,
+              image,
+              blood,
+              district,
+              upazilla,
+              status,
+            };
+            axiosPublic.post("/users", userInfo).then((res) => {
+              console.log(res.data);
+              if (res.data.insertedId) {
+                navigate("/");
+                setLoading(false);
+                Swal.fire({
+                  position: "top-end",
+                  icon: "success",
+                  title: "Registered Successfully!",
+                  showConfirmButton: false,
+                  timer: 1500,
+                });
+              }
+            });
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
   return (
     <div className="max-w-[1170px] mx-auto">
@@ -199,14 +236,20 @@ const Register = () => {
           {error && (
             <div className="text-red-500 text-center my-4">{error}</div>
           )}
-          <button type="submit" className="project-btn w-full mt-5">
-            Register
-          </button>
+          {loading ? (
+            <div className="text-center">
+              <span className="loading loading-dots loading-lg"></span>
+            </div>
+          ) : (
+            <button type="submit" className="project-btn w-full mt-5">
+              Register
+            </button>
+          )}
         </form>
         <div className="pl-5 py-10">
           <p>Already Registered?</p>
           <p>
-            Please{" "}
+            Please
             <Link to="/login" className="underline text-blue-500">
               Login Here
             </Link>
