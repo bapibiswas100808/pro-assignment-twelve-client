@@ -91,7 +91,7 @@ const MyProfile = () => {
             {/* blood group */}
             <label className="form-control w-full">
               <div className="label">
-                <span className="label-text">Choose Your Blood Group</span>
+                <span className="label-text">Your Blood Group</span>
               </div>
               <select
                 defaultValue="default"
