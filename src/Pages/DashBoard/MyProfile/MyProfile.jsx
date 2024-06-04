@@ -4,17 +4,18 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider/AuthProvider";
 import axios from "axios";
 
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
+
 const MyProfile = () => {
   useEffect(() => {
     axios.get("/district.json").then((res) => {
       setDistricts(res.data);
-      console.log(res.data);
     });
   }, []);
   useEffect(() => {
     axios.get("/thana.json").then((res) => {
       setThanas(res.data);
-      console.log(res.data);
     });
   }, []);
   const [districts, setDistricts] = useState([]);
@@ -30,12 +31,39 @@ const MyProfile = () => {
       return res.data;
     },
   });
-  console.log(profileData);
+  const handleUpdate = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const imageFile = form.image.files[0];
+    const uploadImage = { image: imageFile };
+    const res = await axios.post(image_hosting_api, uploadImage, {
+      headers: {
+        "content-type": "multipart/form-data",
+      },
+    });
+
+    const name = form.name.value;
+    const email = form.email.value;
+    const image = res.data.data.display_url;
+    const blood = form.blood.value;
+    const district = form.district.value;
+    const upazilla = form.upazilla.value;
+
+    const updateInfo = { name, email, image, blood, district, upazilla };
+    axiosPublic
+      .put(`/users/${user.email}`, updateInfo)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div>
       <div className=" text-center flex flex-col justify-center items-center ">
-        <h2 className="text-3xl font-bold py-5">My profile</h2>
+        <h2 className="text-3xl font-bold py-5">Hi! {profileData?.name}</h2>
         <img
           className="h-20 w-20 rounded-full"
           src={profileData?.image}
@@ -43,7 +71,7 @@ const MyProfile = () => {
         />
       </div>
       <div>
-        <form>
+        <form onSubmit={handleUpdate}>
           {/* name and email */}
           <div className="flex flex-col lg:flex-row w-full gap-10">
             {/* name */}
@@ -155,7 +183,9 @@ const MyProfile = () => {
               </select>
             </label>
           </div>
-          <button className="project-btn mt-4 w-full">Update Info</button>
+          <button type="submit" className="project-btn mt-4 w-full">
+            Update Info
+          </button>
         </form>
       </div>
     </div>

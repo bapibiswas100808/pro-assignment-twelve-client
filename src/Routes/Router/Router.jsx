@@ -8,6 +8,8 @@ import DashBoard from "../../Pages/DashBoard/DashBoard";
 import MyProfile from "../../Pages/DashBoard/MyProfile/MyProfile";
 import MyResults from "../../Pages/DashBoard/MyResults/MyResults";
 import MyAppointments from "../../Pages/DashBoard/MyAppointments/MyAppointments";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import TestDetails from "../../Pages/TestDetails/TestDetails";
 const Router = createBrowserRouter([
   {
     path: "/",
@@ -15,11 +17,21 @@ const Router = createBrowserRouter([
     children: [
       { path: "/", element: <HomePage></HomePage> },
       { path: "/allTest", element: <AllTest></AllTest> },
+      {
+        path: "/testDetails/:id",
+        element: <TestDetails></TestDetails>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/allTest/${params.id}`),
+      },
       { path: "/login", element: <Login></Login> },
       { path: "/register", element: <Register></Register> },
       {
         path: "/dashBoard",
-        element: <DashBoard></DashBoard>,
+        element: (
+          <PrivateRoute>
+            <DashBoard></DashBoard>
+          </PrivateRoute>
+        ),
         children: [
           { path: "myProfile", element: <MyProfile></MyProfile> },
           { path: "myApp", element: <MyAppointments></MyAppointments> },
