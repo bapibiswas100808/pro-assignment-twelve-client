@@ -8,10 +8,15 @@ import { Link } from "react-router-dom";
 const AllTest = () => {
   const axiosPublic = UseAxiosPublic();
   const [selectedDate, setSelectedDate] = useState();
+  const [currentPage, setCurrentPage] = useState(0);
+
+  // get data
   const { data: allTests = [] } = useQuery({
     queryKey: ["allTests"],
     queryFn: async () => {
-      const res = await axiosPublic.get("/allTest");
+      const res = await axiosPublic.get(
+        `/allTest?page=${currentPage}&size=${itemPerPage}`
+      );
       return res.data;
     },
   });
@@ -25,6 +30,22 @@ const AllTest = () => {
       (!selectedDate || testDate.toDateString() === selectedDate.toDateString())
     );
   });
+  // pagination
+  const count = filteredTest.length;
+  const itemPerPage = 6;
+  const pageNumber = Math.ceil(count / itemPerPage);
+  const pages = [...Array(pageNumber).keys()];
+
+  const handlePrev = () => {
+    if (currentPage > 0) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
+  const handleNext = () => {
+    if (currentPage < pages.length - 1) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
   return (
     <div className="max-w-[1170px] mx-auto min-h-screen">
       <h2 className="text-3xl font-bold text-center py-10">See All Test</h2>
@@ -65,6 +86,25 @@ const AllTest = () => {
             </div>
           </div>
         ))}
+      </div>
+      {/* pagination */}
+      <div className="text-center space-x-5 mb-20">
+        <p>Current Page: {currentPage}</p>
+        <button onClick={handlePrev} className="btn">
+          Prev
+        </button>
+        {pages.map((page, idx) => (
+          <button
+            onClick={() => setCurrentPage(page)}
+            className={currentPage === page && "selected"}
+            key={idx}
+          >
+            {page}
+          </button>
+        ))}
+        <button onClick={handleNext} className="btn">
+          Next
+        </button>
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [showPassword, setShowPassword] = useState(false);
-  const from = location.state?.from?.pathname || "/";
+  const from = location.state?.from?.pathname || "/dashBoard";
   const { signInUser } = useContext(AuthContext);
   const handleLogin = (e) => {
     e.preventDefault();
@@ -41,6 +41,13 @@ const Login = () => {
       })
       .catch((err) => {
         console.log(err);
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: `${err}`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
       });
   };
   return (
