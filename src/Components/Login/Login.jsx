@@ -1,19 +1,43 @@
-import { useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useContext, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
+import toast from "react-hot-toast";
+import Swal from "sweetalert2";
+import { FaRegEye } from "react-icons/fa6";
+import { FaRegEyeSlash } from "react-icons/fa6";
 
 const Login = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [showPassword, setShowPassword] = useState(false);
+  const from = location.state?.from?.pathname || "/";
   const { signInUser } = useContext(AuthContext);
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
+    if (password.length < 6) {
+      toast.error("Password Should be at least 6 character");
+      return;
+    } else if (!/[A-Z]/.test(password)) {
+      toast.error("Password Must Have an UpperCase letter");
+      return;
+    } else if (!/[a-z]/.test(password)) {
+      toast.error("Password Must Have an LowerCase letter");
+      return;
+    }
     signInUser(email, password)
       .then((res) => {
         console.log(res);
-        navigate("/");
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Logged In Successfully!",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate(from, { replace: true });
       })
       .catch((err) => {
         console.log(err);
@@ -51,9 +75,15 @@ const Login = () => {
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Password</span>
+                  <span
+                    className="cursor-pointer relative top-10 right-5"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? <FaRegEye /> : <FaRegEyeSlash />}
+                  </span>
                 </label>
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   name="password"
                   placeholder="password"
                   className="input input-bordered"
@@ -69,7 +99,7 @@ const Login = () => {
             <div className="pl-10 pb-10">
               <p>Not Registered Yet?</p>
               <p>
-                Please{" "}
+                Please
                 <Link
                   className="underline text-blue-500 cursor-pointer"
                   to="/register"

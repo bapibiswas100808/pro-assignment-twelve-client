@@ -1,17 +1,23 @@
 import axios from "axios";
 import { useContext, useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import UseAxiosPublic from "../../Hooks/useAxiosPublic/useAxiosPublic";
 import Swal from "sweetalert2";
+import toast from "react-hot-toast";
+import { FaRegEye } from "react-icons/fa6";
+import { FaRegEyeSlash } from "react-icons/fa6";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 const Register = () => {
   const navigate = useNavigate();
   const axiosPublic = UseAxiosPublic();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const [districts, setDistricts] = useState([]);
   const [thanas, setThanas] = useState([]);
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const { createUser, updateUserProfile } = useContext(AuthContext);
@@ -46,6 +52,19 @@ const Register = () => {
     const password = form.password.value;
     const cfPassword = form.cfPassword.value;
     const status = "active";
+    if (password.length < 6) {
+      toast.error("Password Should be at least 6 character");
+      setLoading(false);
+      return;
+    } else if (!/[A-Z]/.test(password)) {
+      toast.error("Password Must Have an UpperCase letter");
+      setLoading(false);
+      return;
+    } else if (!/[a-z]/.test(password)) {
+      toast.error("Password Must Have an LowerCase letter");
+      setLoading(false);
+      return;
+    }
     if (password !== cfPassword) {
       setError("Passwords did not match! Please try again.");
       setLoading(false);
@@ -70,7 +89,7 @@ const Register = () => {
             axiosPublic.post("/users", userInfo).then((res) => {
               console.log(res.data);
               if (res.data.insertedId) {
-                navigate("/");
+                navigate(from, { replace: true });
                 setLoading(false);
                 Swal.fire({
                   position: "top-end",
@@ -210,9 +229,15 @@ const Register = () => {
             <label className="form-control w-full">
               <div className="label">
                 <span className="label-text">Your Password</span>
+                <span
+                  className="cursor-pointer relative top-10 right-5"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <FaRegEye /> : <FaRegEyeSlash />}
+                </span>
               </div>
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 name="password"
                 placeholder="Password"
                 className="input input-bordered w-full"
@@ -223,9 +248,15 @@ const Register = () => {
             <label className="form-control w-full">
               <div className="label">
                 <span className="label-text">Confirm Password</span>
+                <span
+                  className="cursor-pointer relative top-10 right-5"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? <FaRegEye /> : <FaRegEyeSlash />}
+                </span>
               </div>
               <input
-                type="password"
+                type={showPassword ? "text" : "password"}
                 name="cfPassword"
                 placeholder="Confirm Password"
                 className="input input-bordered w-full"
