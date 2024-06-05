@@ -19,25 +19,29 @@ const Router = createBrowserRouter([
       { path: "/allTest", element: <AllTest></AllTest> },
       {
         path: "/testDetails/:id",
-        element: <TestDetails></TestDetails>,
+        element: (
+          <PrivateRoute>
+            <TestDetails></TestDetails>
+          </PrivateRoute>
+        ),
         loader: ({ params }) =>
           fetch(`http://localhost:5000/allTest/${params.id}`),
       },
       { path: "/login", element: <Login></Login> },
       { path: "/register", element: <Register></Register> },
-      {
-        path: "/dashBoard",
-        element: (
-          <PrivateRoute>
-            <DashBoard></DashBoard>
-          </PrivateRoute>
-        ),
-        children: [
-          { path: "myProfile", element: <MyProfile></MyProfile> },
-          { path: "myApp", element: <MyAppointments></MyAppointments> },
-          { path: "myResult", element: <MyResults></MyResults> },
-        ],
-      },
+    ],
+  },
+  {
+    path: "/dashBoard",
+    element: (
+      <PrivateRoute>
+        <DashBoard></DashBoard>
+      </PrivateRoute>
+    ),
+    children: [
+      { path: "/dashBoard", element: <MyProfile></MyProfile> },
+      { path: "myApp", element: <MyAppointments></MyAppointments> },
+      { path: "myResult", element: <MyResults></MyResults> },
     ],
   },
 ]);

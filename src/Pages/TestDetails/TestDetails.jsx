@@ -75,14 +75,12 @@ const TestDetails = () => {
         <div className="modal-box">
           <div>
             <p>
-              <span className="text-lg font-semibold">
-                Price of the product:
-              </span>
-              $ {testDetails.price}
+              <span className="text-lg font-semibold">Price of the Test:</span>${" "}
+              {testDetails.price}
             </p>
             <p>
               <span className="text-lg font-semibold">
-                Price of the product:
+                Payable Price after Discount:
               </span>
               $ {payableAmount > 0 ? payableAmount : testDetails?.price}
             </p>
@@ -100,7 +98,7 @@ const TestDetails = () => {
             Give your payment information!
           </h3>
           <Elements stripe={stripePromise}>
-            <CheckOutForm></CheckOutForm>
+            <CheckOutForm testDetails={testDetails}></CheckOutForm>
           </Elements>
           <div className="modal-action">
             <form method="dialog">
