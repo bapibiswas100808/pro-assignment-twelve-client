@@ -10,9 +10,11 @@ import {
   updateProfile,
 } from "firebase/auth";
 import auth from "../../Firebase/firebase.config";
+import UseAxiosPublic from "../../Hooks/useAxiosPublic/useAxiosPublic";
 
 export const AuthContext = createContext(null);
 const AuthProvider = ({ children }) => {
+  const axiosPublic = UseAxiosPublic();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const googleProvider = new GoogleAuthProvider();
@@ -50,31 +52,31 @@ const AuthProvider = ({ children }) => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setLoading(false);
-      //   if (currentUser) {
-      //     const userInfo = {
-      //       email: currentUser.email,
-      //     };
-      //     axiosPublic
-      //       .post("/jwt", userInfo)
-      //       .then((res) => {
-      //         console.log(res.data);
-      //         if (res.data.token) {
-      //           localStorage.setItem("access-token", res.data.token);
-      //           setLoading(false);
-      //         }
-      //       })
-      //       .catch((err) => {
-      //         console.log(err);
-      //       });
-      //   } else {
-      //     localStorage.removeItem("access-token");
-      //     setLoading(false);
-      //   }
+      if (currentUser) {
+        const userInfo = {
+          email: currentUser.email,
+        };
+        axiosPublic
+          .post("/jwt", userInfo)
+          .then((res) => {
+            console.log(res.data);
+            if (res.data.token) {
+              localStorage.setItem("access-token", res.data.token);
+              setLoading(false);
+            }
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } else {
+        localStorage.removeItem("access-token");
+        setLoading(false);
+      }
     });
     return () => {
       return unSubscribe();
     };
-  }, []);
+  }, [axiosPublic]);
   const authInfo = {
     user,
     setUser,

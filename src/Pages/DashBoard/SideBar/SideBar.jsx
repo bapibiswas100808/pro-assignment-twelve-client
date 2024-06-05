@@ -8,10 +8,11 @@ import { BsGraphUp } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
 import logo from "../../../../src/assets/logo1.png";
+import UseAdmin from "../../../Hooks/UseAdmin/UseAdmin";
 
 const Sidebar = () => {
   const [isActive, setActive] = useState(false);
-  const isAdmin = true;
+  const [isAdmin] = UseAdmin();
 
   // Sidebar Responsive Handler
   const handleToggle = () => {
@@ -66,7 +67,6 @@ const Sidebar = () => {
             <nav>
               {isAdmin ? (
                 <>
-                  {/* my profile */}
                   <NavLink
                     to="allUser"
                     end

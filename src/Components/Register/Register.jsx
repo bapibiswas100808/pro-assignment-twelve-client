@@ -52,6 +52,7 @@ const Register = () => {
     const password = form.password.value;
     const cfPassword = form.cfPassword.value;
     const status = "active";
+    const role = "user";
     if (password.length < 6) {
       toast.error("Password Should be at least 6 character");
       setLoading(false);
@@ -85,6 +86,7 @@ const Register = () => {
               district,
               upazilla,
               status,
+              role,
             };
             axiosPublic.post("/users", userInfo).then((res) => {
               console.log(res.data);
