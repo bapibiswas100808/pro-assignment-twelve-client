@@ -8,7 +8,7 @@ const DashBoard = () => {
         <Sidebar></Sidebar>
       </div>
 
-      <div className="flex-1 md:ml-64 px-5">
+      <div className="flex-1 md:ml-64 px-5 py-5">
         <Outlet></Outlet>
       </div>
     </div>

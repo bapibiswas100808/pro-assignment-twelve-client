@@ -19,6 +19,7 @@ const CheckOutForm = ({ testDetails }) => {
       email: user.email,
       testId: testDetails._id,
       image: testDetails.image,
+      title: testDetails.title,
       price: testDetails.price,
       slots: testDetails.slots,
       date: testDetails.date,

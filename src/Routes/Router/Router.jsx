@@ -10,6 +10,7 @@ import MyResults from "../../Pages/DashBoard/MyResults/MyResults";
 import MyAppointments from "../../Pages/DashBoard/MyAppointments/MyAppointments";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import TestDetails from "../../Pages/TestDetails/TestDetails";
+import AllUsers from "../../Pages/DashBoard/AllUsers/AllUsers";
 const Router = createBrowserRouter([
   {
     path: "/",
@@ -39,9 +40,12 @@ const Router = createBrowserRouter([
       </PrivateRoute>
     ),
     children: [
+      // user
       { path: "/dashBoard", element: <MyProfile></MyProfile> },
       { path: "myApp", element: <MyAppointments></MyAppointments> },
       { path: "myResult", element: <MyResults></MyResults> },
+      // admin
+      { path: "allUser", element: <AllUsers></AllUsers> },
     ],
   },
 ]);

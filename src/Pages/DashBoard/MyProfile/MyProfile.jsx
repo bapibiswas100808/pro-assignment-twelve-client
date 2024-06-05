@@ -3,11 +3,13 @@ import UseAxiosPublic from "../../../Hooks/useAxiosPublic/useAxiosPublic";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider/AuthProvider";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const MyProfile = () => {
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     axios.get("/district.json").then((res) => {
       setDistricts(res.data);
@@ -24,7 +26,7 @@ const MyProfile = () => {
   const { user } = useContext(AuthContext);
   const axiosPublic = UseAxiosPublic();
 
-  const { data: profileData } = useQuery({
+  const { data: profileData, refetch } = useQuery({
     queryKey: ["profileData"],
     queryFn: async () => {
       const res = await axiosPublic.get(`/users/${user.email}`);
@@ -33,6 +35,7 @@ const MyProfile = () => {
   });
   const handleUpdate = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const form = e.target;
     const imageFile = form.image.files[0];
     const uploadImage = { image: imageFile };
@@ -53,7 +56,16 @@ const MyProfile = () => {
     axiosPublic
       .put(`/users/${user.email}`, updateInfo)
       .then((res) => {
-        console.log(res.data);
+        console.log(res);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Your Profile is Updated",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        refetch();
+        setLoading(false)
       })
       .catch((err) => {
         console.log(err);
@@ -95,6 +107,7 @@ const MyProfile = () => {
               </div>
               <input
                 type="text"
+                readOnly
                 name="email"
                 defaultValue={profileData?.email}
                 placeholder="Your Email"
@@ -183,9 +196,15 @@ const MyProfile = () => {
               </select>
             </label>
           </div>
-          <button type="submit" className="project-btn mt-4 w-full">
-            Update Info
-          </button>
+          {loading ? (
+            <div className="text-center">
+              <span className="loading loading-dots loading-lg"></span>
+            </div>
+          ) : (
+            <button type="submit" className="project-btn w-full mt-5">
+              Update Info
+            </button>
+          )}
         </form>
       </div>
     </div>

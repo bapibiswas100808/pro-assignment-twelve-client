@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { GrLogout } from "react-icons/gr";
-import { FcSettings } from "react-icons/fc";
+// import { FcSettings } from "react-icons/fc";
 import { BsFingerprint } from "react-icons/bs";
 import { GrUserAdmin } from "react-icons/gr";
 import { AiOutlineBars } from "react-icons/ai";
@@ -11,6 +11,7 @@ import logo from "../../../../src/assets/logo1.png";
 
 const Sidebar = () => {
   const [isActive, setActive] = useState(false);
+  const isAdmin = true;
 
   // Sidebar Responsive Handler
   const handleToggle = () => {
@@ -63,49 +64,145 @@ const Sidebar = () => {
 
             {/*  Menu Items */}
             <nav>
-              {/* my profile */}
-              <NavLink
-                to="/dashBoard"
-                end
-                className={({ isActive }) =>
-                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                    isActive ? "bg-[#003479]  text-white" : "text-gray-600"
-                  }`
-                }
-              >
-                <BsGraphUp className="w-5 h-5" />
+              {isAdmin ? (
+                <>
+                  {/* my profile */}
+                  <NavLink
+                    to="allUser"
+                    end
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                        isActive ? "bg-[#003479]  text-white" : "text-gray-600"
+                      }`
+                    }
+                  >
+                    <BsGraphUp className="w-5 h-5" />
 
-                <span className="mx-4 font-medium">My Profile</span>
-              </NavLink>
+                    <span className="mx-4 font-medium">All User</span>
+                  </NavLink>
 
-              {/*  */}
-              <NavLink
-                to="myApp"
-                className={({ isActive }) =>
-                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                    isActive ? "bg-[#003479]  text-white" : "text-gray-600"
-                  }`
-                }
-              >
-                <BsFingerprint className="w-5 h-5" />
+                  <NavLink
+                    to="addTest"
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                        isActive ? "bg-[#003479]  text-white" : "text-gray-600"
+                      }`
+                    }
+                  >
+                    <BsFingerprint className="w-5 h-5" />
 
-                <span className="mx-4 font-medium">
-                  My Upcoming Appointments
-                </span>
-              </NavLink>
-              {/* My Listing */}
-              <NavLink
-                to="myResult"
-                className={({ isActive }) =>
-                  `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                    isActive ? "bg-[#003479]  text-white" : "text-gray-600"
-                  }`
-                }
-              >
-                <GrUserAdmin className="w-5 h-5" />
+                    <span className="mx-4 font-medium">Add A Test</span>
+                  </NavLink>
 
-                <span className="mx-4 font-medium">Test Results</span>
-              </NavLink>
+                  <NavLink
+                    to="allTest"
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                        isActive ? "bg-[#003479]  text-white" : "text-gray-600"
+                      }`
+                    }
+                  >
+                    <GrUserAdmin className="w-5 h-5" />
+
+                    <span className="mx-4 font-medium">All Tests</span>
+                  </NavLink>
+                  <NavLink
+                    to="reserve"
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                        isActive ? "bg-[#003479]  text-white" : "text-gray-600"
+                      }`
+                    }
+                  >
+                    <GrUserAdmin className="w-5 h-5" />
+
+                    <span className="mx-4 font-medium">Reservation</span>
+                  </NavLink>
+                  <NavLink
+                    to="addBanner"
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                        isActive ? "bg-[#003479]  text-white" : "text-gray-600"
+                      }`
+                    }
+                  >
+                    <BsFingerprint className="w-5 h-5" />
+
+                    <span className="mx-4 font-medium">Add a Banner</span>
+                  </NavLink>
+                  {/* My Listing */}
+                  <NavLink
+                    to="allBanner"
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                        isActive ? "bg-[#003479]  text-white" : "text-gray-600"
+                      }`
+                    }
+                  >
+                    <GrUserAdmin className="w-5 h-5" />
+
+                    <span className="mx-4 font-medium">All Banners</span>
+                  </NavLink>
+                  <NavLink
+                    to="stats"
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                        isActive ? "bg-[#003479]  text-white" : "text-gray-600"
+                      }`
+                    }
+                  >
+                    <GrUserAdmin className="w-5 h-5" />
+
+                    <span className="mx-4 font-medium">Statistic</span>
+                  </NavLink>
+                </>
+              ) : (
+                <>
+                  {/* my profile */}
+                  <NavLink
+                    to="/dashBoard"
+                    end
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                        isActive ? "bg-[#003479]  text-white" : "text-gray-600"
+                      }`
+                    }
+                  >
+                    <BsGraphUp className="w-5 h-5" />
+
+                    <span className="mx-4 font-medium">My Profile</span>
+                  </NavLink>
+
+                  {/*  */}
+                  <NavLink
+                    to="myApp"
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                        isActive ? "bg-[#003479]  text-white" : "text-gray-600"
+                      }`
+                    }
+                  >
+                    <BsFingerprint className="w-5 h-5" />
+
+                    <span className="mx-4 font-medium">
+                      My Upcoming Appointments
+                    </span>
+                  </NavLink>
+                  {/* My Listing */}
+                  <NavLink
+                    to="myResult"
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                        isActive ? "bg-[#003479]  text-white" : "text-gray-600"
+                      }`
+                    }
+                  >
+                    <GrUserAdmin className="w-5 h-5" />
+
+                    <span className="mx-4 font-medium">Test Results</span>
+                  </NavLink>
+                </>
+              )}
             </nav>
           </div>
         </div>
