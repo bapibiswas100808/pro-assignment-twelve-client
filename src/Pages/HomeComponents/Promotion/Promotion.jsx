@@ -14,7 +14,9 @@ const Promotion = () => {
               />
             </div>
             <div className="flex-1">
-              <h1 className="text-3xl font-bold">Find a Suitable Offer!</h1>
+              <h1 className="text-2xl font-bold underline mb-4">
+                Find a Suitable Offer!
+              </h1>
               <p className="my-2">
                 <span className="text-lg font-semibold mr-2">
                   Discounts for Regular Checkups:
