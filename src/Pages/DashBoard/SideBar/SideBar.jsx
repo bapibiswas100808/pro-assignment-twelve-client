@@ -9,6 +9,7 @@ import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
 import logo from "../../../../src/assets/logo1.png";
 import UseAdmin from "../../../Hooks/UseAdmin/UseAdmin";
+import { LuTestTube2 } from "react-icons/lu";
 
 const Sidebar = () => {
   const [isActive, setActive] = useState(false);
@@ -89,7 +90,7 @@ const Sidebar = () => {
                       }`
                     }
                   >
-                    <BsFingerprint className="w-5 h-5" />
+                    <LuTestTube2 className="w-5 h-5" />
 
                     <span className="mx-4 font-medium">Add A Test</span>
                   </NavLink>

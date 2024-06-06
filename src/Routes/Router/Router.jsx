@@ -11,6 +11,7 @@ import MyAppointments from "../../Pages/DashBoard/MyAppointments/MyAppointments"
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import TestDetails from "../../Pages/TestDetails/TestDetails";
 import AllUsers from "../../Pages/DashBoard/AllUsers/AllUsers";
+import AddTest from "../../Pages/DashBoard/AddTest/AddTest";
 const Router = createBrowserRouter([
   {
     path: "/",
@@ -46,6 +47,7 @@ const Router = createBrowserRouter([
       { path: "myResult", element: <MyResults></MyResults> },
       // admin
       { path: "allUser", element: <AllUsers></AllUsers> },
+      { path: "addTest", element: <AddTest></AddTest> },
     ],
   },
 ]);
