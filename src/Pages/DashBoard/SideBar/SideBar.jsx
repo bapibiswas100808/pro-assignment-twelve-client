@@ -10,6 +10,11 @@ import { Link } from "react-router-dom";
 import logo from "../../../../src/assets/logo1.png";
 import UseAdmin from "../../../Hooks/UseAdmin/UseAdmin";
 import { LuTestTube2 } from "react-icons/lu";
+import { GiVerticalBanner } from "react-icons/gi";
+import { PiFlagBannerFold } from "react-icons/pi";
+import { GrTest } from "react-icons/gr";
+import { BsLifePreserver } from "react-icons/bs";
+import { IoStatsChartSharp } from "react-icons/io5";
 
 const Sidebar = () => {
   const [isActive, setActive] = useState(false);
@@ -103,10 +108,11 @@ const Sidebar = () => {
                       }`
                     }
                   >
-                    <GrUserAdmin className="w-5 h-5" />
+                    <GrTest className="w-5 h-5" />
 
                     <span className="mx-4 font-medium">All Tests</span>
                   </NavLink>
+
                   <NavLink
                     to="reserve"
                     className={({ isActive }) =>
@@ -115,10 +121,11 @@ const Sidebar = () => {
                       }`
                     }
                   >
-                    <GrUserAdmin className="w-5 h-5" />
+                    <BsLifePreserver className="w-5 h-5" />
 
                     <span className="mx-4 font-medium">Reservation</span>
                   </NavLink>
+
                   <NavLink
                     to="addBanner"
                     className={({ isActive }) =>
@@ -127,11 +134,11 @@ const Sidebar = () => {
                       }`
                     }
                   >
-                    <BsFingerprint className="w-5 h-5" />
+                    <GiVerticalBanner className="w-5 h-5" />
 
                     <span className="mx-4 font-medium">Add a Banner</span>
                   </NavLink>
-                  {/* My Listing */}
+                  {/**/}
                   <NavLink
                     to="allBanner"
                     className={({ isActive }) =>
@@ -140,7 +147,7 @@ const Sidebar = () => {
                       }`
                     }
                   >
-                    <GrUserAdmin className="w-5 h-5" />
+                    <PiFlagBannerFold className="w-5 h-5" />
 
                     <span className="mx-4 font-medium">All Banners</span>
                   </NavLink>
@@ -152,7 +159,7 @@ const Sidebar = () => {
                       }`
                     }
                   >
-                    <GrUserAdmin className="w-5 h-5" />
+                    <IoStatsChartSharp className="w-5 h-5" />
 
                     <span className="mx-4 font-medium">Statistic</span>
                   </NavLink>

@@ -14,6 +14,8 @@ import AllUsers from "../../Pages/DashBoard/AllUsers/AllUsers";
 import AddTest from "../../Pages/DashBoard/AddTest/AddTest";
 import AllTests from "../../Pages/DashBoard/AllTests/AllTests";
 import UpdateTest from "../../Pages/DashBoard/UpdateTest/UpdateTest";
+import AddBanner from "../../Pages/DashBoard/AddBanner/AddBanner";
+import AllBanner from "../../Pages/DashBoard/AllBanner/AllBanner";
 const Router = createBrowserRouter([
   {
     path: "/",
@@ -51,6 +53,8 @@ const Router = createBrowserRouter([
       { path: "allUser", element: <AllUsers></AllUsers> },
       { path: "addTest", element: <AddTest></AddTest> },
       { path: "allTest", element: <AllTests></AllTests> },
+      { path: "addBanner", element: <AddBanner></AddBanner> },
+      { path: "allBanner", element: <AllBanner></AllBanner> },
       {
         path: "/dashBoard/update/:id",
         element: <UpdateTest></UpdateTest>,
