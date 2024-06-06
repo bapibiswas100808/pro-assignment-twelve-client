@@ -12,6 +12,8 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import TestDetails from "../../Pages/TestDetails/TestDetails";
 import AllUsers from "../../Pages/DashBoard/AllUsers/AllUsers";
 import AddTest from "../../Pages/DashBoard/AddTest/AddTest";
+import AllTests from "../../Pages/DashBoard/AllTests/AllTests";
+import UpdateTest from "../../Pages/DashBoard/UpdateTest/UpdateTest";
 const Router = createBrowserRouter([
   {
     path: "/",
@@ -48,6 +50,13 @@ const Router = createBrowserRouter([
       // admin
       { path: "allUser", element: <AllUsers></AllUsers> },
       { path: "addTest", element: <AddTest></AddTest> },
+      { path: "allTest", element: <AllTests></AllTests> },
+      {
+        path: "/dashBoard/update/:id",
+        element: <UpdateTest></UpdateTest>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/allTest/${params.id}`),
+      },
     ],
   },
 ]);
