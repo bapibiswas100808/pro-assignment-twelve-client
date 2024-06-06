@@ -12,13 +12,13 @@ const Banner = () => {
     },
   });
   const activeBanner = banners.find((banner) => banner.isActive === "true");
-  console.log(activeBanner);
+
   return (
     <div>
       <div
         className="hero min-h-screen"
         style={{
-          backgroundImage: `url(${activeBanner.image})`,
+          backgroundImage: `url(${activeBanner?.image})`,
         }}
       >
         <div className="hero-overlay bg-opacity-60"></div>
