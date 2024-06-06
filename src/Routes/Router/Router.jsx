@@ -16,6 +16,8 @@ import AllTests from "../../Pages/DashBoard/AllTests/AllTests";
 import UpdateTest from "../../Pages/DashBoard/UpdateTest/UpdateTest";
 import AddBanner from "../../Pages/DashBoard/AddBanner/AddBanner";
 import AllBanner from "../../Pages/DashBoard/AllBanner/AllBanner";
+import Reservation from "../../Pages/DashBoard/Reservation/Reservation";
+import Stats from "../../Pages/DashBoard/Stats/Stats";
 const Router = createBrowserRouter([
   {
     path: "/",
@@ -55,6 +57,8 @@ const Router = createBrowserRouter([
       { path: "allTest", element: <AllTests></AllTests> },
       { path: "addBanner", element: <AddBanner></AddBanner> },
       { path: "allBanner", element: <AllBanner></AllBanner> },
+      { path: "reserve", element: <Reservation></Reservation> },
+      { path: "stats", element: <Stats></Stats> },
       {
         path: "/dashBoard/update/:id",
         element: <UpdateTest></UpdateTest>,
