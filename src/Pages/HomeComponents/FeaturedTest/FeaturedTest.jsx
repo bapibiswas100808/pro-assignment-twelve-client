@@ -12,7 +12,7 @@ const FeaturedTest = () => {
   });
 
   return (
-    <div className="max-w-[1170px] mx-auto mb-20 px-3 lg:px-0">
+    <div className="max-w-[1170px] mx-auto my-10 px-3 lg:px-0">
       <h2 className="text-3xl font-bold text-center py-10">Featured test</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         {featuredTest.slice(0, 6).map((test, idx) => (
