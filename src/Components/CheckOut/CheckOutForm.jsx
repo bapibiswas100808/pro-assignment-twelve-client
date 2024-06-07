@@ -54,8 +54,8 @@ const CheckOutForm = ({ testDetails, payableAmount }) => {
         payment_method: {
           card: card,
           billing_details: {
-            name: user?.displayName || "aynonumys",
-            email: user?.email || "aynnonymus",
+            name: user?.displayName || "Anonymous",
+            email: user?.email || "Anonymous",
           },
         },
       }

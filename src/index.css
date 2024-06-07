@@ -39,6 +39,10 @@ select {
   color: #00bcd4;
   font-weight: 700;
 }
+.active-btn {
+  background-color: #00bcd4;
+  color: white;
+}
 .selected {
   background-color: #00bcd4;
 }
