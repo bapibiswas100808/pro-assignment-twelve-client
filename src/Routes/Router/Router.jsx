@@ -21,6 +21,7 @@ import Stats from "../../Pages/DashBoard/Stats/Stats";
 import About from "../../Pages/About/About";
 import Blogs from "../../Pages/Blogs/Blogs";
 import ContactUs from "../../Pages/ContactUs/ContactUs";
+import AdminRoute from "../AdminRoute/AdminRoute";
 const Router = createBrowserRouter([
   {
     path: "/",
@@ -54,7 +55,7 @@ const Router = createBrowserRouter([
     ),
     children: [
       // user
-      { path: "/dashBoard", element: <MyProfile></MyProfile> },
+      { path: "/dashBoard/myProfile", element: <MyProfile></MyProfile> },
       { path: "myApp", element: <MyAppointments></MyAppointments> },
       { path: "myResult", element: <MyResults></MyResults> },
       // admin
@@ -64,7 +65,14 @@ const Router = createBrowserRouter([
       { path: "addBanner", element: <AddBanner></AddBanner> },
       { path: "allBanner", element: <AllBanner></AllBanner> },
       { path: "reserve", element: <Reservation></Reservation> },
-      { path: "stats", element: <Stats></Stats> },
+      {
+        path: "/dashBoard/stats",
+        element: (
+          <AdminRoute>
+            <Stats></Stats>
+          </AdminRoute>
+        ),
+      },
       {
         path: "/dashBoard/update/:id",
         element: <UpdateTest></UpdateTest>,

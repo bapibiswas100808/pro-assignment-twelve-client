@@ -10,6 +10,8 @@ const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_ke
 
 const MyProfile = () => {
   const [loading, setLoading] = useState(false);
+  const { user } = useContext(AuthContext);
+  const axiosPublic = UseAxiosPublic();
   useEffect(() => {
     axios.get("/district.json").then((res) => {
       setDistricts(res.data);
@@ -22,9 +24,6 @@ const MyProfile = () => {
   }, []);
   const [districts, setDistricts] = useState([]);
   const [thanas, setThanas] = useState([]);
-
-  const { user } = useContext(AuthContext);
-  const axiosPublic = UseAxiosPublic();
 
   const { data: profileData, refetch } = useQuery({
     queryKey: ["profileData"],
@@ -65,7 +64,7 @@ const MyProfile = () => {
           timer: 1500,
         });
         refetch();
-        setLoading(false)
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);

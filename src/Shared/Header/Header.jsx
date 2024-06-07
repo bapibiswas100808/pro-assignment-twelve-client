@@ -2,9 +2,11 @@ import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/logo1.png";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
+import UseAdmin from "../../Hooks/UseAdmin/UseAdmin";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [isAdmin] = UseAdmin();
   const navLinks = (
     <>
       <li>
@@ -13,9 +15,14 @@ const Header = () => {
       <li>
         <NavLink to="/allTest">All Test</NavLink>
       </li>
-      {user && (
+      {user && isAdmin && (
         <li>
-          <NavLink to="/dashboard">DashBoard</NavLink>
+          <NavLink to="/dashBoard/stats">DashBoard</NavLink>
+        </li>
+      )}
+      {user && !isAdmin && (
+        <li>
+          <NavLink to="/dashBoard/myProfile">DashBoard</NavLink>
         </li>
       )}
       <li>

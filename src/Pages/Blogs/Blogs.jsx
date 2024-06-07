@@ -22,7 +22,7 @@ const Blogs = () => {
                 <img
                   src={blog?.image}
                   alt="Shoes"
-                  className="rounded-xl h-[300px]"
+                  className="rounded-xl h-52 lg:h-[300px]"
                 />
               </figure>
               <div className="card-body items-center text-center">

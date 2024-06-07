@@ -152,7 +152,7 @@ const Sidebar = () => {
                     <span className="mx-4 font-medium">All Banners</span>
                   </NavLink>
                   <NavLink
-                    to="stats"
+                    to="/dashBoard/stats"
                     className={({ isActive }) =>
                       `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
                         isActive ? "bg-[#003479]  text-white" : "text-gray-600"
@@ -168,7 +168,7 @@ const Sidebar = () => {
                 <>
                   {/* my profile */}
                   <NavLink
-                    to="/dashBoard"
+                    to="/dashBoard/myProfile"
                     end
                     className={({ isActive }) =>
                       `flex items-center px-4 py-2 my-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
