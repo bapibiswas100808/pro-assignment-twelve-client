@@ -98,7 +98,10 @@ const TestDetails = () => {
             Give your payment information!
           </h3>
           <Elements stripe={stripePromise}>
-            <CheckOutForm testDetails={testDetails}></CheckOutForm>
+            <CheckOutForm
+              payableAmount={payableAmount}
+              testDetails={testDetails}
+            ></CheckOutForm>
           </Elements>
           <div className="modal-action">
             <form method="dialog">
