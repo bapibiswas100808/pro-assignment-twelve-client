@@ -18,6 +18,9 @@ import AddBanner from "../../Pages/DashBoard/AddBanner/AddBanner";
 import AllBanner from "../../Pages/DashBoard/AllBanner/AllBanner";
 import Reservation from "../../Pages/DashBoard/Reservation/Reservation";
 import Stats from "../../Pages/DashBoard/Stats/Stats";
+import About from "../../Pages/About/About";
+import Blogs from "../../Pages/Blogs/Blogs";
+import ContactUs from "../../Pages/ContactUs/ContactUs";
 const Router = createBrowserRouter([
   {
     path: "/",
@@ -37,6 +40,9 @@ const Router = createBrowserRouter([
       },
       { path: "/login", element: <Login></Login> },
       { path: "/register", element: <Register></Register> },
+      { path: "/about", element: <About></About> },
+      { path: "/blog", element: <Blogs></Blogs> },
+      { path: "/contact", element: <ContactUs></ContactUs> },
     ],
   },
   {

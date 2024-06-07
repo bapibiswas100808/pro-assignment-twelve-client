@@ -19,13 +19,13 @@ const Header = () => {
         </li>
       )}
       <li>
-        <NavLink to="/customer">Customers</NavLink>
+        <NavLink to="/about">About Us</NavLink>
       </li>
       <li>
-        <NavLink to="/photo">Photo Gallery</NavLink>
+        <NavLink to="/blog">Blogs</NavLink>
       </li>
       <li>
-        <NavLink to="/book">Book Appointment</NavLink>
+        <NavLink to="/contact">Contact Us</NavLink>
       </li>
     </>
   );
