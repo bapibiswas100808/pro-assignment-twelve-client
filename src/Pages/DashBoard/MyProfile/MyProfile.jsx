@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import UseAxiosPublic from "../../../Hooks/useAxiosPublic/useAxiosPublic";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider/AuthProvider";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -12,18 +12,21 @@ const MyProfile = () => {
   const [loading, setLoading] = useState(false);
   const { user } = useContext(AuthContext);
   const axiosPublic = UseAxiosPublic();
-  useEffect(() => {
-    axios.get("/district.json").then((res) => {
-      setDistricts(res.data);
-    });
-  }, []);
-  useEffect(() => {
-    axios.get("/thana.json").then((res) => {
-      setThanas(res.data);
-    });
-  }, []);
-  const [districts, setDistricts] = useState([]);
-  const [thanas, setThanas] = useState([]);
+
+  const { data: districts = [] } = useQuery({
+    queryKey: ["district"],
+    queryFn: async () => {
+      const res = await axios.get("/district.json");
+      return res.data;
+    },
+  });
+  const { data: thanas = [] } = useQuery({
+    queryKey: ["district"],
+    queryFn: async () => {
+      const res = await axios.get("/thana.json");
+      return res.data;
+    },
+  });
 
   const { data: profileData, refetch } = useQuery({
     queryKey: ["profileData"],

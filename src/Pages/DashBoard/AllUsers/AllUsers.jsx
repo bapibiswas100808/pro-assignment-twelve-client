@@ -104,7 +104,7 @@ const AllUsers = () => {
                 <tr key={idx} className="bg-base-200">
                   <th>
                     <img
-                      className="h-20 w-20 rounded-full"
+                      className="h-20 rounded-full"
                       src={user?.image}
                       alt=""
                     />

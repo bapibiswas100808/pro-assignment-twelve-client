@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import UseAxiosPublic from "../../Hooks/useAxiosPublic/useAxiosPublic";
@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import { FaRegEye } from "react-icons/fa6";
 import { FaRegEyeSlash } from "react-icons/fa6";
+import { useQuery } from "@tanstack/react-query";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -15,22 +16,24 @@ const Register = () => {
   const axiosPublic = UseAxiosPublic();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/dashBoard/myProfile";
-  const [districts, setDistricts] = useState([]);
-  const [thanas, setThanas] = useState([]);
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const { createUser, updateUserProfile } = useContext(AuthContext);
-  useEffect(() => {
-    axios.get("district.json").then((res) => {
-      setDistricts(res.data);
-    });
-  }, []);
-  useEffect(() => {
-    axios.get("thana.json").then((res) => {
-      setThanas(res.data);
-    });
-  }, []);
+  const { data: districts = [] } = useQuery({
+    queryKey: ["district"],
+    queryFn: async () => {
+      const res = await axios.get("/district.json");
+      return res.data;
+    },
+  });
+  const { data: thanas = [] } = useQuery({
+    queryKey: ["district"],
+    queryFn: async () => {
+      const res = await axios.get("/thana.json");
+      return res.data;
+    },
+  });
   const handleRegister = async (e) => {
     e.preventDefault();
     setLoading(true);
