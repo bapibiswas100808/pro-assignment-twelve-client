@@ -10,7 +10,7 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [showPassword, setShowPassword] = useState(false);
-  const from = location.state?.from?.pathname || "/dashBoard";
+  const from = location.state?.from?.pathname || "/dashBoard/myProfile";
   const { signInUser } = useContext(AuthContext);
   const handleLogin = (e) => {
     e.preventDefault();

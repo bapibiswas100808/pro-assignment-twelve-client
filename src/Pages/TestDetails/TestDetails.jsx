@@ -2,12 +2,24 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { useLoaderData } from "react-router-dom";
 import CheckOutForm from "../../Components/CheckOut/CheckOutForm";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import toast from "react-hot-toast";
+import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
+import UseAxiosSecure from "../../Hooks/useAxiosSecure/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 
 const stripePromise = loadStripe(import.meta.env.VITE_payment_gateway_key);
 
 const TestDetails = () => {
+  const { user } = useContext(AuthContext);
+  const axiosSecure = UseAxiosSecure();
+  const { data: userData } = useQuery({
+    queryKey: ["userData"],
+    queryFn: async () => {
+      const res = await axiosSecure.get(`/users/${user.email}`);
+      return res.data;
+    },
+  });
   const testDetails = useLoaderData();
   const [payableAmount, setPayableAmount] = useState(testDetails.price);
   const handleCoupon = (e) => {
@@ -56,12 +68,15 @@ const TestDetails = () => {
               <p className="py-6">{testDetails?.short_description}</p>
               {testDetails.slots > 0 ? (
                 <button
+                  disabled={userData?.status === "blocked"}
                   onClick={() =>
                     document.getElementById("my_modal_1").showModal()
                   }
                   className="project-btn"
                 >
-                  Book Now
+                  {userData?.status === "blocked"
+                    ? "You are Blocked"
+                    : "Book Now"}
                 </button>
               ) : (
                 "No slots Available"

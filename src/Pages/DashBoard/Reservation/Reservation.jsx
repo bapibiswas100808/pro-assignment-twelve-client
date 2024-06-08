@@ -52,6 +52,39 @@ const Reservation = () => {
   const handleSearch = () => {
     refetch();
   };
+  const handleVerify = (item) => {
+    axiosSecure
+      .patch(`/bookedTest/status/${item?._id}`)
+      .then((res) => {
+        console.log(res.data);
+        refetch();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    const verifiedItem = {
+      email: item.email,
+      title: item.title,
+      image: item.image,
+      price: item.price,
+      short_description: item.short_description,
+    };
+    axiosSecure
+      .post("/verified", verifiedItem)
+      .then((res) => {
+        console.log(res.data);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Test is Delivered",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
   return (
     <div>
       <h3 className="text-3xl fnt-bold text-center py-5">Reservation</h3>
@@ -88,7 +121,10 @@ const Reservation = () => {
                   <th>{item?.title}</th>
                   <td>{item?.email}</td>
                   <td>
-                    <button className="project-btn">
+                    <button
+                      onClick={() => handleVerify(item)}
+                      className="project-btn"
+                    >
                       {item?.report_status}
                     </button>
                   </td>
