@@ -14,7 +14,7 @@ const Register = () => {
   const navigate = useNavigate();
   const axiosPublic = UseAxiosPublic();
   const location = useLocation();
-  const from = location.state?.from?.pathname || "/dashBoard";
+  const from = location.state?.from?.pathname || "/dashBoard/myProfile";
   const [districts, setDistricts] = useState([]);
   const [thanas, setThanas] = useState([]);
   const [showPassword, setShowPassword] = useState(false);
