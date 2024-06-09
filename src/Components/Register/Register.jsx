@@ -28,7 +28,7 @@ const Register = () => {
     },
   });
   const { data: thanas = [] } = useQuery({
-    queryKey: ["district"],
+    queryKey: ["thana"],
     queryFn: async () => {
       const res = await axios.get("/thana.json");
       return res.data;
@@ -57,15 +57,21 @@ const Register = () => {
     const status = "active";
     const role = "user";
     if (password.length < 6) {
-      toast.error("Password Should be at least 6 character");
+      toast.error(
+        "Password Should be at least 6 character, have at least one uppercase and one lowercase"
+      );
       setLoading(false);
       return;
     } else if (!/[A-Z]/.test(password)) {
-      toast.error("Password Must Have an UpperCase letter");
+      toast.error(
+        "Password Should be at least 6 character, have at least one uppercase and one lowercase"
+      );
       setLoading(false);
       return;
     } else if (!/[a-z]/.test(password)) {
-      toast.error("Password Must Have an LowerCase letter");
+      toast.error(
+        "Password Should be at least 6 character, have at least one uppercase and one lowercase"
+      );
       setLoading(false);
       return;
     }

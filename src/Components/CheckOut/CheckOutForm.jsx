@@ -70,6 +70,7 @@ const CheckOutForm = ({ testDetails, payableAmount }) => {
         Transaction Id:${paymentIntent.id}`);
       }
     }
+
     // post to db
     const bookedItem = {
       email: user.email,

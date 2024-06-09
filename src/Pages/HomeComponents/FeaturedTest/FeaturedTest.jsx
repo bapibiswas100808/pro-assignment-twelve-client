@@ -19,7 +19,7 @@ const FeaturedTest = () => {
           <div className="" key={idx}>
             <div className="card bg-base-100 shadow-xl min-h-[475px]">
               <figure>
-                <img src={test?.image} alt="Shoes" />
+                <img className="h-[250px]" src={test?.image} alt="Shoes" />
               </figure>
               <div className="card-body">
                 <h2 className="card-title">{test?.title}</h2>

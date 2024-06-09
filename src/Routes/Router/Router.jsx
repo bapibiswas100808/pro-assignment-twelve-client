@@ -37,7 +37,9 @@ const Router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/allTest/${params.id}`),
+          fetch(
+            `https://pro-assignment-tweleve-server.vercel.app/allTest/${params.id}`
+          ),
       },
       { path: "/login", element: <Login></Login> },
       { path: "/register", element: <Register></Register> },
@@ -77,7 +79,9 @@ const Router = createBrowserRouter([
         path: "/dashBoard/update/:id",
         element: <UpdateTest></UpdateTest>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/allTest/${params.id}`),
+          fetch(
+            `https://pro-assignment-tweleve-server.vercel.app/allTest/${params.id}`
+          ),
       },
     ],
   },

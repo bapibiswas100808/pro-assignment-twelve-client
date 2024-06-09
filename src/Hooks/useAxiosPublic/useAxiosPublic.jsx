@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosPublic = axios.create({
-  baseURL: "http://localhost:5000",
+  baseURL: "https://pro-assignment-tweleve-server.vercel.app",
 });
 const UseAxiosPublic = () => {
   return axiosPublic;
