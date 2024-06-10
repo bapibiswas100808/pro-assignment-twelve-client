@@ -1,11 +1,13 @@
 # React + Vite
 
-## Med Diagnostic
+## Project name: Med Diagnostic
 
 - Admin User Name: admin@admin.com
 - Admin Password: 123456Ba
 
-# Live-Link: https://pro-assignment-twelve.web.app
+## Live-Link: https://pro-assignment-twelve.web.app
+
+## About This Project:
 
 - Tech Stack: Utilized React, TailwindCSS, Daisy UI, MongoDB, Express, and Node.js for robust and efficient development.
 
