@@ -3,6 +3,7 @@ import logo from "../../assets/logo1.png";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import UseAdmin from "../../Hooks/UseAdmin/UseAdmin";
+import { Tooltip } from "react-tooltip";
 
 const Header = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -74,11 +75,20 @@ const Header = () => {
         <div className="navbar-end">
           {user ? (
             <div className="flex gap-3">
-              <img
-                className="h-14 w-14 rounded-full"
-                src={user.photoURL}
-                alt=""
-              />
+              <div className="">
+                <a
+                  data-tooltip-id="my-tooltip"
+                  data-tooltip-content={user?.displayName}
+                  data-tooltip-place="left"
+                >
+                  <img
+                    alt=""
+                    src={user?.photoURL}
+                    className="h-14 w-14  rounded-full bg-white"
+                  />
+                </a>
+                <Tooltip id="my-tooltip" />
+              </div>
               <button onClick={logOut} className="project-btn">
                 Log Out
               </button>

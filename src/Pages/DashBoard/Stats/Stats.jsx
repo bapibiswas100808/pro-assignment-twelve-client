@@ -140,7 +140,7 @@ const Stats = () => {
           </div>
         </div>
       </div>
-      <div className="flex flex-col lg:flex-row">
+      <div className="flex flex-col lg:flex-row mt-10">
         <div>
           <BarChart
             width={chartWidth}

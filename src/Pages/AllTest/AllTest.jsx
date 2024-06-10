@@ -4,6 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { Helmet } from "react-helmet-async";
 
 const AllTest = () => {
   const axiosPublic = UseAxiosPublic();
@@ -53,11 +54,17 @@ const AllTest = () => {
 
   return (
     <div className="max-w-[1170px] mx-auto min-h-screen">
+      <Helmet>
+        <title>Med Diagnostic|All Test </title>
+      </Helmet>
       <h2 className="text-3xl font-bold text-center py-10">See All Test</h2>
       <div className="mb-5 text-center">
         <DatePicker
           selected={selectedDate}
-          onChange={(date) => setSelectedDate(date)}
+          onChange={(date) => {
+            setSelectedDate(date);
+            setCurrentPage(1);
+          }}
           dateFormat="yyyy-MM-dd"
           className="input input-bordered"
           placeholderText="Select a date"

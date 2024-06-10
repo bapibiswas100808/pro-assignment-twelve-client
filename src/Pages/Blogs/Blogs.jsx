@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import UseAxiosPublic from "../../Hooks/useAxiosPublic/useAxiosPublic";
+import { Helmet } from "react-helmet-async";
 
 const Blogs = () => {
   const axiosPublic = UseAxiosPublic();
@@ -13,6 +14,9 @@ const Blogs = () => {
   console.log(blogs);
   return (
     <div className="max-w-[1170px] mx-auto px-3 lg:px-0">
+      <Helmet>
+        <title>Med Diagnostic|Blog </title>
+      </Helmet>
       <h2 className="text-3xl font-bold text-center py-10">Our Blogs</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-10">
         {blogs?.map((blog, idx) => (

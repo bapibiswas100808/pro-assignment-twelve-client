@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import UseAxiosSecure from "../../Hooks/useAxiosSecure/useAxiosSecure";
 import { useContext } from "react";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
+import { Helmet } from "react-helmet-async";
 
 const DashBoard = () => {
   const { user } = useContext(AuthContext);
@@ -18,6 +19,9 @@ const DashBoard = () => {
 
   return (
     <div className="relative min-h-screen md:flex">
+      <Helmet>
+        <title>Med Diagnostic|Dashboard </title>
+      </Helmet>
       <div className="">
         <Sidebar></Sidebar>
       </div>

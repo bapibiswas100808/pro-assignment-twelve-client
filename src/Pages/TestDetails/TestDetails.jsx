@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import { AuthContext } from "../../Provider/AuthProvider/AuthProvider";
 import UseAxiosSecure from "../../Hooks/useAxiosSecure/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import { Helmet } from "react-helmet-async";
 
 const stripePromise = loadStripe(import.meta.env.VITE_payment_gateway_key);
 
@@ -39,15 +40,20 @@ const TestDetails = () => {
 
   return (
     <div className="max-w-[1170px] mx-auto">
+      <Helmet>
+        <title>Med Diagnostic|Test Details </title>
+      </Helmet>
       <h2 className="text-3xl font-bold text-center py-10">Test Details</h2>
       <div>
         <div className="hero">
           <div className="hero-content flex-col lg:flex-row gap-10 mb-10">
-            <img
-              src={testDetails?.image}
-              className="max-w-sm rounded-lg shadow-2xl"
-            />
-            <div className="">
+            <div className="flex-1">
+              <img
+                src={testDetails?.image}
+                className="w-full rounded-lg shadow-2xl"
+              />
+            </div>
+            <div className="flex-1">
               <h1 className="text-2xl font-bold mb-8">{testDetails?.title}</h1>
               <div className="flex gap-5">
                 <p>
