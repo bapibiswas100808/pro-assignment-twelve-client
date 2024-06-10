@@ -22,7 +22,7 @@ const Banner = () => {
         }}
       >
         <div className="hero-overlay bg-opacity-60"></div>
-        <div className="hero-content text-center text-neutral-content">
+        <div className="hero-content text-center text-neutral-content bg-[#003479] opacity-50 rounded-xl px-5 py-10">
           <div className="max-w-lg">
             <h1 className="mb-5 text-3xl font-bold">{activeBanner?.title}</h1>
             <p className="mb-5">{activeBanner?.description}</p>

@@ -53,7 +53,7 @@ const AllTest = () => {
   };
 
   return (
-    <div className="max-w-[1170px] mx-auto min-h-screen">
+    <div className="max-w-[1170px] mx-auto min-h-screen px-3 lg:px-0">
       <Helmet>
         <title>Med Diagnostic|All Test </title>
       </Helmet>
