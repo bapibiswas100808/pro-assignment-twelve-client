@@ -10,8 +10,18 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [showPassword, setShowPassword] = useState(false);
-  const from = location.state?.from?.pathname || "/dashBoard/myProfile";
+  const from = location.state?.from?.pathname || "/dashBoard/stats";
   const { signInUser } = useContext(AuthContext);
+  // const { user } = useContext(AuthContext);
+  // const axiosSecure = UseAxiosSecure();
+  // const { data: userData } = useQuery({
+  //   queryKey: ["userData"],
+  //   queryFn: async () => {
+  //     const res = await axiosSecure.get(`/users/${user.email}`);
+  //     return res.data;
+  //   },
+  // });
+
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;

@@ -22,10 +22,12 @@ import About from "../../Pages/About/About";
 import Blogs from "../../Pages/Blogs/Blogs";
 import ContactUs from "../../Pages/ContactUs/ContactUs";
 import AdminRoute from "../AdminRoute/AdminRoute";
+import ErrorElement from "../../Components/ErrorElement/ErrorElement";
 const Router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
+    errorElement: <ErrorElement></ErrorElement>,
     children: [
       { path: "/", element: <HomePage></HomePage> },
       { path: "/allTest", element: <AllTest></AllTest> },
