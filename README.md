@@ -1,30 +1,23 @@
-# React + Vite
 
 ## Project name: Med Diagnostic
 
 - Admin User Name: admin@admin.com
 - Admin Password: 123456Ba
 
-## Live-Link: https://pro-assignment-twelve.web.app
+### Live-Link: https://pro-assignment-twelve.web.app
+### Project Overview:
+Med Diagnostic" is a comprehensive web platform utilizing React, Tailwind CSS, Google Firebase, MongoDB, Node.js, and Express. It facilitates online booking, payment, and result retrieval for diagnostic tests. Featuring separate dashboards for Admin and users, it ensures seamless management of user data and test operations with Stripe integration for payments.
 
-## About This Project:
+### Steps to Use this repository:
+- Clone the project with the repository Url
+- run: npm i, to get node modules
+- run: npm run dev, to open the live link
 
-- Tech Stack: Utilized React, TailwindCSS, Daisy UI, MongoDB, Express, and Node.js for robust and efficient development.
+### Technology Used: 
+React, Tailwind CSS, Google Firebase, MongoDB, Node Js, Express
+### Key Features:
+- This website is built for a Diagnostic service where users can book tests, pay for their tests online, and get the test result
+- This website has a different dashboard for the Admin and user where the Admin can see all users and tests. Admin can also add, delete, update test and user. Where user can update their details, booked tests, and download test results.
+- This website has a stripe payment system that allows user to pay for their test and get an appointment.
 
-- Comprehensive Dashboard: Features two distinct dashboards - User Dashboard and Admin Dashboard, ensuring a tailored experience for both user types.
 
-- User-centric Functionality: Users can seamlessly update their profiles, book and cancel tests, and download their test results, enhancing user convenience and satisfaction.
-
-- Admin Management: Admins have full control over user and test data, with functionalities such as viewing all users, tests, and booked reports, as well as performing CRUD operations on this data.
-
-- User Blocking and Privilege Assignment: Admins can effectively manage user privileges by blocking users or elevating them to admin status, providing enhanced security and control over the platform.
-
-- Data Export: Admins have the capability to download user details along with their test records, facilitating easy data management and analysis.
-
-- Enhanced User Interaction: Integrated features like Sweet Alert 2 and React Tooltip for a more intuitive and engaging user experience.
-
-- Scalable Database Solution: Leveraged MongoDB for efficient data storage and retrieval, ensuring scalability and performance as the platform grows.
-
-- Customizable UI: TailwindCSS and Daisy UI enable a visually appealing and customizable user interface, enhancing the overall aesthetic and user engagement.
-
-- Extensive Testing Capabilities: Facilitates booking, management, and analysis of diagnostic tests, catering to a diverse range of medical needs and ensuring comprehensive healthcare support.
